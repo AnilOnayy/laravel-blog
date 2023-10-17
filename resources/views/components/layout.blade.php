@@ -8,6 +8,11 @@
 
 
 <body style="font-family: Open Sans, sans-serif">
+    @if(session()->has('success'))
+        <div class="w-full bg-green-500 text-xl text-white text-center h-24 flex items-center justify-center">
+            <p class="m-0"> {{ session('success') }} </p>
+        </div>
+    @endif
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
@@ -55,4 +60,6 @@
             </div>
         </footer>
     </section>
+
+
 </body>
