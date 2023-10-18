@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -20,18 +21,21 @@ class SessionController extends Controller
     public function store() {
 
         $attributes = request()->validate([
-            'email' => ['required', 'email' ,'min:3', 'max:255'],
-            'password' => ['required', 'min:3', 'max:255']
+            'email' => ['required', 'email'],
+            'password' => ['required']
         ]);
 
         if(auth()->attempt($attributes)) {
-            request()->session()->regenerate();
+            session()->regenerate();
 
-            $user = User::where('email',$attributes['email'])->first();
-            auth()->login($user);
+            return redirect('/')->with('success','Welcome Back :) ');
         }
 
-        return redirect('/')->with('success','Welcome Back :) ');
+        throw ValidationException::withMessages([
+            'email' => 'Your provided credentials could not be verified.'
+        ]);
     }
+
+
 
 }
