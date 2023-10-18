@@ -8,7 +8,7 @@
 
 
 <body style="font-family: Open Sans, sans-serif">
-    @if(session()->has('success'))
+    @if (session()->has('success'))
         <div class="w-full bg-green-500 text-xl text-white text-center h-24 flex items-center justify-center">
             <p class="m-0"> {{ session('success') }} </p>
         </div>
@@ -21,10 +21,21 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex items-center justify-center gap-8">
+                @auth
+                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }} </span>
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="text-xs text-blue-300">Log Out</button>
+                    </form>
+                @else
+                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase">Log In</a>
+                @endauth
+
+                <a href="#"
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -47,12 +58,11 @@
                             </label>
 
                             <input id="email" type="text" placeholder="Your email address"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
                         <button type="submit"
-                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
+                            class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
                         </button>
                     </form>
