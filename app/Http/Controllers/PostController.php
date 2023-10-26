@@ -23,12 +23,9 @@ class PostController extends Controller
         ]);
     }
 
-    // public function category(Category $category)
-    // {
-    //     return view('posts', [
-    //         'posts' =>  $category->posts,
-    //         'categories' => Category::all(),
-    //         'currentCategory' => $category
-    //     ]);
-    // }
+    public function create()
+    {
+        return view('posts.create');
+    }
+
 }
