@@ -52,6 +52,16 @@
                     <a href="/login" class="text-xs font-bold uppercase">Log In</a>
                 @endauth
 
+                @auth
+                @if(auth()->user()->username === 'reksnomq')
+                    <a type="submit"
+                    href="/admin/posts/create"
+                        class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
+                        Create a new post
+                    </a>
+                @endif
+
+            @endauth
                 <a href="#newsletter"
                     class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
@@ -81,8 +91,6 @@
 
 
                         </div>
-
-
                         <button type="submit"
                             class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
