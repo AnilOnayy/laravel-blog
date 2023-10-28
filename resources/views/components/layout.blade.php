@@ -41,27 +41,29 @@
 
             <div class="mt-8 md:mt-0 flex items-center justify-center gap-8">
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }} </span>
 
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button type="submit" class="text-xs text-blue-300">Log Out</button>
-                    </form>
+                <x-dropdown >
+                    <x-slot name="trigger">
+                        <span class="text-xs font-bold uppercase cursor-pointer">Welcome, {{ auth()->user()->name }} </span>
+                    </x-slot>
+
+                    <x-dropdown-item href="/admin/dashboard"> Dashboard </x-dropdown-item>
+                    <x-dropdown-item href="/admin/posts/create"> New Post </x-dropdown-item>
+                    <x-dropdown-item href="#">
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit" >Log Out</button>
+                        </form>
+                    </x-dropdown-item>
+
+                </x-dropdown>
+
+
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="text-xs font-bold uppercase">Log In</a>
                 @endauth
 
-                @auth
-                @if(auth()->user()->username === 'reksnomq')
-                    <a type="submit"
-                    href="/admin/posts/create"
-                        class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
-                        Create a new post
-                    </a>
-                @endif
-
-            @endauth
                 <a href="#newsletter"
                     class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
