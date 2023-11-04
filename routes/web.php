@@ -10,7 +10,6 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('/newsletters',[NewsletterController::class,'subscribe']);
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
@@ -25,9 +24,10 @@ Route::post('/logout',[SessionController::class,'destroy'])->middleware('auth');
 Route::get('/login',[SessionController::class,'create'])->middleware('guest')->name('login');
 Route::post('/sessions',[SessionController::class,'store'])->middleware('guest');
 
+Route::post('/newsletters',[NewsletterController::class,'subscribe']);
 
 Route::middleware('can:admin')->group(function() {
-    Route::resource('admin/posts',AdminPostController::class)->except('show');
+    Route::resource ('admin/posts',AdminPostController::class)->except('show');
 
     // Route::get('admin/posts',[AdminPostController::class,'index']);
     // Route::get('admin/posts/create',[AdminPostController::class,'create']);

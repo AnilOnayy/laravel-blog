@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'slug' => fake()->slug(),
             'excerpt' => fake()->paragraph(4),
             'body' => fake()->paragraph(8),
+            'status' => 'active'
         ];
     }
 }

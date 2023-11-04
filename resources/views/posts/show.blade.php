@@ -9,7 +9,7 @@
                 alt="" class="rounded-xl">
 
                 <p class="mt-4 block text-gray-400 text-xs">
-                    Published {{ $post->updated_at->diffForHumans() }}
+                    Published {{ $post->created_at->diffForHumans() }}
                 </p>
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
@@ -19,6 +19,10 @@
                                 {{ $post->author->name }} </a> </h5>
                         <h6>Mascot at Laracasts</h6>
                     </div>
+                </div>
+
+                <div class="w-full mt-4 text-sm  flex justify-start mx-auto">
+                    <x-rounded-badge >  {{ $post->views_count }} times viewed. </x-rounded-badge>
                 </div>
             </div>
 

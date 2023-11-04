@@ -15,11 +15,16 @@
                     <option value="{{ $category->id }}" {{ old('category_id') === $category->id  ? 'selected' : '' }} >{{ $category->name }}</option>
                 @endforeach
             </x-form.select>
+            <x-form.select :title="'status'" name="status" >
+                <option value="0" hidden selected>Select Status</option>
+                <option value="active" >Active</option>
+                <option value="draft" >Draft</option>
+                <option value="passive" >Passive</option>
+            </x-form.select>
+
             <x-primary-button >Create</x-primary-button>
         </form>
-        @if($errors->any())
-                        {{ implode('', $errors->all('<div>:message</div>')) }}
-                    @endif
+
     </x-setting>
 
 

@@ -6,8 +6,9 @@
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <!--  Category -->
-        <div class="relative lg:flex lg:inline-flex lg:items-center bg-gray-100 rounded-xl">
+        <div class="gap-3 lg:flex lg:inline-flex lg:items-center">
             <x-category-dropdown />
+            <x-author-dropdown />
         </div>
 
         <!-- Search -->

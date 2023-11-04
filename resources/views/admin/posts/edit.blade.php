@@ -27,6 +27,12 @@
                 @endforeach
             </x-form.select>
 
+            <x-form.select :title="'status'" name="status" >
+                <option value="active" {{ $post->status === 'active' ? 'selected' : '' }} >Active</option>
+                <option value="draft" {{ $post->status === 'draft' ? 'selected' : '' }} >Draft</option>
+                <option value="passive" {{ $post->status === 'passive' ? 'selected' : '' }} >Passive</option>
+            </x-form.select>
+
             <x-primary-button >Update</x-primary-button>
         </form>
     </x-setting>

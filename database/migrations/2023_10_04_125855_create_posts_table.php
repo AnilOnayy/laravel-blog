@@ -21,7 +21,8 @@ return new class extends Migration
             $table->text('body');
             $table->text('thumbnail')->nullable();
             $table->timestamps();
-            $table->timestamp('published_at')->nullable();
+            $table->string('status')->default('active');
+            $table->integer('views_count')->default(0);
         });
     }
 

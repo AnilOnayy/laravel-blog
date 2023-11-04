@@ -9,7 +9,7 @@ class AdminPostController extends Controller
 {
     public function index() {
         return view('admin.posts.index',[
-            'posts' => Post::paginate(50)
+            'posts' => Post::latest()->paginate(50)
         ]);
     }
 
@@ -68,7 +68,8 @@ class AdminPostController extends Controller
             'thumbnail' => $post->exists ? 'image ': 'required|image',
             'excerpt' => 'required|min:3',
             'body' => 'required|min:3',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'required|exists:categories,id',
+            'status' => $post->exists ? '' : 'required'
         ]);
     }
 }
