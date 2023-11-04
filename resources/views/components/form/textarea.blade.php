@@ -9,7 +9,8 @@
         name="{{ $name }}"
         id="{{ $name }}"
         cols="30"
-        rows="3">{{ old($name) }}</textarea>
+        rows="3">{{ $slot }}</textarea>
+
 
     <x-form.error :name="$name" />
 </x-form.field>

@@ -10,8 +10,6 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('/ping',[ImageController::class,'compress']);
-
 Route::post('/newsletters',[NewsletterController::class,'subscribe']);
 
 
@@ -28,11 +26,15 @@ Route::get('/login',[SessionController::class,'create'])->middleware('guest')->n
 Route::post('/sessions',[SessionController::class,'store'])->middleware('guest');
 
 
+Route::middleware('can:admin')->group(function() {
+    Route::resource('admin/posts',AdminPostController::class)->except('show');
 
-Route::get('admin/posts',[AdminPostController::class,'index'])->middleware('admin');
-Route::get('admin/posts/create',[AdminPostController::class,'create'])->middleware('admin');
-Route::post('admin/posts/create',[AdminPostController::class,'store'])->middleware('admin');
-Route::get('admin/posts/{post:id}/edit',[AdminPostController::class,'edit'])->middleware('admin');
-Route::patch('admin/posts/{post:id}/edit',[AdminPostController::class,'update'])->middleware('admin');
+    // Route::get('admin/posts',[AdminPostController::class,'index']);
+    // Route::get('admin/posts/create',[AdminPostController::class,'create']);
+    // Route::post('admin/posts/create',[AdminPostController::class,'store']);
+    // Route::get('admin/posts/{post:id}/edit',[AdminPostController::class,'edit']);
+    // Route::patch('admin/posts/{post:id}/edit',[AdminPostController::class,'update']);
+    // Route::delete('admin/posts/{post:id}/delete',[AdminPostController::class,'destroy']);
 
-
+    // laravel can assign every 7 route!
+});

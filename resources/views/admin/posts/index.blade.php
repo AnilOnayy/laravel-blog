@@ -27,9 +27,21 @@
                         <td class="px-6 py-4">
                             <a href="/admin/posts/{{ $post->id }}/edit">Edit</a>
                         </td>
+
+                        <td class="px-6 py-4">
+                            <form action="/admin/posts/{{ $post->id }}" id="deleteForm-{{ $post->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button  >Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
 
+                    @if($errors->any())
+                        {{ implode('', $errors->all('<div>:message</div>')) }}
+                    @endif
                 </tbody>
             </table>
         </div>

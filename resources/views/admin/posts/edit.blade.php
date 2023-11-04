@@ -1,6 +1,6 @@
     <x-layout>
     <x-setting heading="Publish New Post" >
-        <form action="/admin/posts/{{ $post->id }}/edit" method="POST" enctype="multipart/form-data">
+        <form action="/admin/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -16,17 +16,18 @@
             </div>
 
 
-            <x-form.input  :name="'slug'" :value="old('slug', $post->slug)"  />
-            <x-form.textarea  :name="'excerpt'" > {{ old('excerpt', $post->excerpt) }} </x-form.textarea>
-            <x-form.textarea  :name="'body'" > {{ old('body', $post->body) }} </x-form.textarea>
-            <x-form.select :title="'category'" :name="'category_id'" >
+            <x-form.input  name="slug" :value="old('slug', $post->slug)"  />
+            <x-form.textarea  name="excerpt" > {{ old('excerpt', $post->excerpt) }} </x-form.textarea>
+            <x-form.textarea  name="body" > {{ old('body', $post->body) }} </x-form.textarea>
+
+            <x-form.select :title="'category'" name="category_id" >
                 <option hidden disabled selected value="0">Select Category</option>
                 @foreach (App\Models\Category::all() as $category)
                     <option value="{{ $category->id }}" {{ $post->category->id === $category->id  ? 'selected' : '' }} >{{ $category->name }}</option>
                 @endforeach
             </x-form.select>
 
-            <x-primary-button >Create</x-primary-button>
+            <x-primary-button >Update</x-primary-button>
         </form>
     </x-setting>
 
