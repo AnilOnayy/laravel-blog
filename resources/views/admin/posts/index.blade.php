@@ -49,31 +49,6 @@
                     @endif
                 </tbody>
             </table>
-
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full whitespace-no-wrap">
-                        <thead>
-                            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
-                                <th class="px-4 py-3">Başlık 1</th>
-                                <th class="px-4 py-3">Başlık 2</th>
-                                <th class="px-4 py-3">Başlık 3</th>
-                                <!-- İhtiyacınıza göre diğer başlık sütunlarını ekleyebilirsiniz -->
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y">
-                            <tr class="text-gray-700">
-                                <td class="px-4 py-3">Veri 1</td>
-                                <td class="px-4 py-3">Veri 2</td>
-                                <td class="px-4 py-3">Veri 3</td>
-                                <!-- İhtiyacınıza göre diğer veri sütunlarını ekleyebilirsiniz -->
-                            </tr>
-                            <!-- İhtiyacınıza göre diğer satırları ekleyebilirsiniz -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
 
     </x-setting>

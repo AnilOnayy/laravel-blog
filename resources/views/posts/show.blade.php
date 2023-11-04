@@ -21,8 +21,35 @@
                     </div>
                 </div>
 
-                <div class="w-full mt-4 text-sm  flex justify-start mx-auto">
+                <div class="w-full mt-4 text-sm  flex justify-around mx-auto  ">
                     <x-rounded-badge >  {{ $post->views_count }} times viewed. </x-rounded-badge>
+
+                    @auth
+                        @php
+                            $color = $post->hasBookmark() ? 'green' : 'gray';
+                        @endphp
+                        <x-rounded-badge  :color="$color">
+                            <form action="/bookmarks{{ $post->hasBookmark() ? '/'.$post->getBookmark()->id : '' }}" method="POST">
+                                @csrf
+
+                                @if ($post->hasBookmark())
+                                    @method('DELETE')
+                                @endif
+
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <button class="flex justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" viewBox="0 0 20 20" fill="{{ $color }}">
+                                        <path fill-rule="evenodd" d="M5 2a1 1 0 00-1 1v16l7-3 7 3V3a1 1 0 00-1-1H5zm0 2h10v12.268l-5-2.222-5 2.222V4z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </x-rounded-badge>
+                    @endauth
+
+
+                    <div>
+
+                    </div>
                 </div>
             </div>
 

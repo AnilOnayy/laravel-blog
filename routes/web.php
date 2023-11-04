@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ImageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +25,12 @@ Route::get('/login',[SessionController::class,'create'])->middleware('guest')->n
 Route::post('/sessions',[SessionController::class,'store'])->middleware('guest');
 
 Route::post('/newsletters',[NewsletterController::class,'subscribe']);
+
+
+Route::get('/bookmarks',[BookmarkController::class,'index'])->middleware('auth');
+Route::post('/bookmarks',[BookmarkController::class,'store'])->middleware('auth');
+Route::delete('/bookmarks/{bookmark}',[BookmarkController::class,'destroy'])->middleware('auth');
+
 
 Route::middleware('can:admin')->group(function() {
     Route::resource ('admin/posts',AdminPostController::class)->except('show');

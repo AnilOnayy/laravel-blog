@@ -47,6 +47,8 @@
                         <span class="text-xs font-bold uppercase cursor-pointer">Welcome, {{ auth()->user()->name }} </span>
                     </x-slot>
 
+                    <x-dropdown-item href="/bookmarks"> Bookmarks </x-dropdown-item>
+
                     @admin
                         <x-dropdown-item href="/admin/posts"> Posts </x-dropdown-item>
                         <x-dropdown-item href="/admin/posts/create"> New Post </x-dropdown-item>

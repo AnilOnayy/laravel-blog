@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Bookmark;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Expr\BinaryOp\BooleanOr;
 
 class Post extends Model
 {
@@ -23,6 +25,22 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function hasBookmark()
+    {
+        return Bookmark::where([
+            'post_id' => $this->id,
+            'user_id' => request()->user()->id
+        ])->count() > 0;
+    }
+
+    public function getBookmark()
+    {
+        return Bookmark::firstWhere([
+            'post_id' => $this->id,
+            'user_id' => request()->user()->id
+        ]);
     }
 
     public function scopeFilter($query, array $filters)
